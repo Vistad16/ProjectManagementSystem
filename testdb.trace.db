@@ -1,0 +1,3 @@
+2022-05-26 10:53:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TEST_TABLE" already exists; SQL statement:
+CREATE TABLE test_table (name VARCHAR(100)) [42101-210]
