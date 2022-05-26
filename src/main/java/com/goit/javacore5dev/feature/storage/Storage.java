@@ -1,3 +1,7 @@
+package com.goit.javacore5dev.feature.storage;
+
+import com.goit.javacore5dev.feature.prefs.Prefs;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,16 +12,25 @@ public class Storage {
     private Connection connection;
 
     private Storage() {
-        String connectionUrl = "jdbc:h2:./testdb";
-        try (Connection connection = DriverManager.getConnection(connectionUrl);) {
-            Statement statement = connection.createStatement();
+        try {
+            String connectionUrl = new Prefs().getString(Prefs.DB_JDBC_CONNECTION_URL);
+            connection = DriverManager.getConnection(connectionUrl);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Storage getInstance() {
+    public static Storage getInstance() {
         return INSTANCE;
+    }
+
+    public int executeUpdate(String sql){
+        try (Statement st = connection.createStatement()) {
+            return st.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     public Connection getConnection() {
