@@ -1,2 +1,5 @@
-/target/
+/.gradle/
 /.idea/
+/build/
+/testdb.mv.db
+/testdb.trace.db
