@@ -105,4 +105,25 @@ public class HomeWork {
         }
     }
 
+    public void NumberOfDevelopersOnProjects(){
+        System.out.println("Number of developers on projects:");
+        try (Statement st = storage.getConnection().createStatement()){
+            try (ResultSet rs = st.executeQuery(
+                    "SELECT projects.creation_Date, projects.projects_name, COUNT(developer.id) AS total_developers\n" +
+                            "FROM developer_project\n" +
+                            "INNER JOIN developer ON developer_project.developer_id = developer.id\n" +
+                            "INNER JOIN projects ON developer_project.project_id  = projects.id\n" +
+                            "GROUP BY projects.id;")){
+                while (rs.next()){
+                    String date = rs.getString("creation_Date");
+                    String projectsName = rs.getString("projects_name");
+                    int totalDevelopers = rs.getInt("total_developers");
+                    System.out.println(date + " " + projectsName + " " + totalDevelopers);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

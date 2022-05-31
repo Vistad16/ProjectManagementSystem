@@ -1,7 +1,7 @@
 /.gradle/
 /.idea/
 /build/
-/testdb.mv.db/
-/testdb.trace.db/
-/src/main/java/com/goit/javacore5dev/feature/homeWorkSelect/originSQLSelection.sql/
+/testdb.mv.db
+/testdb.trace.db
+/src/main/java/com/goit/javacore5dev/feature/homeWorkSelect/originSQLSelection.sql
 

@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS projects (
     id IDENTITY PRIMARY KEY,
     projects_name VARCHAR(100) NOT NULL,
     cost BIGINT NOT NULL,
+    creation_Date DATE,
     description VARCHAR(350)
 );
 
@@ -105,15 +106,15 @@ INSERT INTO customers (name, Country) VALUES
 ('Anarion', 'Gondor'),
 ('Assan Tariq', 'Arrakis');
 
-INSERT INTO projects (projects_name, cost, description) VALUES
-('Green Tatooine', 32000000, 'Tree gardening'),
-('Palpatine LLC', 1000000, 'The color of the lightsaber'),
-('Imladris', 800000, 'Vegan food and music'),
-('Sauron and Maiar', 444000, 'Business management tips'),
-('Spice spice', 12000000, 'Spice for everyone'),
-('Harkonen air force', 76000000000, 'Democracy and service to the people'),
-('Ungoliant', 55000, 'Insect control'),
-('Shire Resort', 20000000, 'Outdoor houses by the lake');
+INSERT INTO projects (projects_name, cost, creation_Date, description) VALUES
+('Green Tatooine', 32000000, '2014-03-16', 'Tree gardening'),
+('Palpatine LLC', 1000000, '2022-05-31', 'The color of the lightsaber'),
+('Imladris', 800000, '1986-12-15', 'Vegan food and music'),
+('Sauron and Maiar', 444000, '1991-05-16', 'Business management tips'),
+('Spice spice', 12000000, '2012-12-12', 'Spice for everyone'),
+('Harkonen air force', 76000000000, '2000-07-20', 'Democracy and service to the people'),
+('Ungoliant', 55000, '2007-10-08', 'Insect control'),
+('Shire Resort', 20000000, '1834-04-03', 'Outdoor houses by the lake');
 
 INSERT INTO developers_skills (developers_id, skill_id) VALUES
 (1, 5),
@@ -149,3 +150,34 @@ INSERT INTO company_customer (customer_id, company_id) VALUES
 (1, 1),
 (2, 2),
 (3, 3);
+
+INSERT INTO developer (company_id, name, age, sex, salary) VALUES
+(1, 'Chack Norris', 100, 'male', 7777777);
+
+INSERT INTO developers_skills (developers_id, skill_id) VALUES
+(7, 3),
+(7, 6),
+(7, 9),
+(7, 12);
+
+INSERT INTO developer_project (developer_id, project_id) VALUES
+(7, 1),
+(7, 2),
+(7, 4),
+(7, 7);
+
+--ALTER TABLE projects
+--ADD creation_Date DATE;
+--
+--UPDATE projects
+--SET creation_Date = 2022-05-16
+--WHERE id = 1;
+--
+--UPDATE projects SET creation_Date = '2014-03-16' WHERE id = 1;
+--UPDATE projects SET creation_Date = '2022-05-31' WHERE id = 2;
+--UPDATE projects SET creation_Date = '1986-12-15' WHERE id = 3;
+--UPDATE projects SET creation_Date = '1991-05-16' WHERE id = 4;
+--UPDATE projects SET creation_Date = '2012-12-12' WHERE id = 5;
+--UPDATE projects SET creation_Date = '2000-07-20' WHERE id = 6;
+--UPDATE projects SET creation_Date = '2007-10-08' WHERE id = 7;
+--UPDATE projects SET creation_Date = '1834-04-03' WHERE id = 8;

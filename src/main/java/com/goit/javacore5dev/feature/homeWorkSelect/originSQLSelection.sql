@@ -29,8 +29,8 @@ INNER JOIN skills ON developers_skills.skill_id  = skills.id
 WHERE skill_level = 'middle';
 
 --#5 список проектов в следующем формате: дата создания - название проекта - количество разработчиков на этом проекте.
-SELECT projects.projects_name, SUM(developer.name) AS total_developer
+SELECT projects.creation_Date, projects.projects_name, COUNT(developer.id) AS total_developers
 FROM developer_project
 INNER JOIN developer ON developer_project.developer_id = developer.id
 INNER JOIN projects ON developer_project.project_id  = projects.id
-WHERE projects_name = 'Green Tatooine';
+GROUP BY projects.id;
