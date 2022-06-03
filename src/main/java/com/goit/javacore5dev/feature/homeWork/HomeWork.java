@@ -1,4 +1,4 @@
-package com.goit.javacore5dev.feature.homeWorkSelect;
+package com.goit.javacore5dev.feature.homeWork;
 
 import com.goit.javacore5dev.feature.storage.Storage;
 
@@ -24,19 +24,19 @@ public class HomeWork {
     public static final String SENIOR = "senior";
     private Storage storage;
 
-    public HomeWork(Storage storage){
+    public HomeWork(Storage storage) {
         this.storage = storage;
     }
 
-    public void totalProjectSalary(String projectName){
-        try (Statement st = storage.getConnection().createStatement()){
+    public void totalProjectSalary(String projectName) {
+        try (Statement st = storage.getConnection().createStatement()) {
             try (ResultSet rs = st.executeQuery(
                     "SELECT projects.projects_name, SUM(developer.salary) AS total_salary\n" +
-                    "FROM developer_project\n" +
-                    "INNER JOIN developer ON developer_project.developer_id = developer.id\n" +
-                    "INNER JOIN projects ON developer_project.project_id = projects.id\n" +
-                    "WHERE projects_name = '" + projectName +"';")){
-                while (rs.next()){
+                            "FROM developer_project\n" +
+                            "INNER JOIN developer ON developer_project.developer_id = developer.id\n" +
+                            "INNER JOIN projects ON developer_project.project_id = projects.id\n" +
+                            "WHERE projects_name = '" + projectName + "';")) {
+                while (rs.next()) {
                     String projects_name = rs.getString("projects_name");
                     String totalSalary = rs.getString("total_salary");
                     System.out.println("Project name = " + projects_name);
@@ -48,16 +48,16 @@ public class HomeWork {
         }
     }
 
-    public void projectDevelopersList(String projectName){
+    public void projectDevelopersList(String projectName) {
         System.out.println("Project name = " + projectName + "\nDevelopers:");
-        try (Statement st = storage.getConnection().createStatement()){
+        try (Statement st = storage.getConnection().createStatement()) {
             try (ResultSet rs = st.executeQuery(
                     "SELECT projects.projects_name, developer.name\n" +
                             "FROM developer_project\n" +
                             "INNER JOIN developer ON developer_project.developer_id = developer.id\n" +
                             "INNER JOIN projects ON developer_project.project_id  = projects.id\n" +
-                            "WHERE projects_name = '" + projectName + "';")){
-                while (rs.next()){
+                            "WHERE projects_name = '" + projectName + "';")) {
+                while (rs.next()) {
                     String developerName = rs.getString("name");
                     System.out.println(developerName);
                 }
@@ -67,16 +67,16 @@ public class HomeWork {
         }
     }
 
-    public void writesInLanguage(String languageName){
+    public void writesInLanguage(String languageName) {
         System.out.println("Language = " + languageName + "\nDevelopers:");
-        try (Statement st = storage.getConnection().createStatement()){
+        try (Statement st = storage.getConnection().createStatement()) {
             try (ResultSet rs = st.executeQuery(
                     "SELECT developer.name\n" +
                             "FROM developers_skills\n" +
                             "INNER JOIN developer ON developers_skills.developers_id = developer.id\n" +
                             "INNER JOIN skills ON developers_skills.skill_id  = skills.id\n" +
-                            "WHERE programming_language = '" + languageName + "';")){
-                while (rs.next()){
+                            "WHERE programming_language = '" + languageName + "';")) {
+                while (rs.next()) {
                     String developerName = rs.getString("name");
                     System.out.println(developerName);
                 }
@@ -86,16 +86,16 @@ public class HomeWork {
         }
     }
 
-    public void findDevelopersLevel(String devLevel){
+    public void findDevelopersLevel(String devLevel) {
         System.out.println("Level = " + devLevel + "\nDevelopers:");
-        try (Statement st = storage.getConnection().createStatement()){
+        try (Statement st = storage.getConnection().createStatement()) {
             try (ResultSet rs = st.executeQuery(
                     "SELECT developer.name\n" +
                             "FROM developers_skills\n" +
                             "INNER JOIN developer ON developers_skills.developers_id = developer.id\n" +
                             "INNER JOIN skills ON developers_skills.skill_id  = skills.id\n" +
-                            "WHERE skill_level = '" + devLevel + "';")){
-                while (rs.next()){
+                            "WHERE skill_level = '" + devLevel + "';")) {
+                while (rs.next()) {
                     String developerName = rs.getString("name");
                     System.out.println(developerName);
                 }
@@ -105,16 +105,16 @@ public class HomeWork {
         }
     }
 
-    public void NumberOfDevelopersOnProjects(){
+    public void NumberOfDevelopersOnProjects() {
         System.out.println("Number of developers on projects:");
-        try (Statement st = storage.getConnection().createStatement()){
+        try (Statement st = storage.getConnection().createStatement()) {
             try (ResultSet rs = st.executeQuery(
                     "SELECT projects.creation_Date, projects.projects_name, COUNT(developer.id) AS total_developers\n" +
                             "FROM developer_project\n" +
                             "INNER JOIN developer ON developer_project.developer_id = developer.id\n" +
                             "INNER JOIN projects ON developer_project.project_id  = projects.id\n" +
-                            "GROUP BY projects.id;")){
-                while (rs.next()){
+                            "GROUP BY projects.id;")) {
+                while (rs.next()) {
                     String date = rs.getString("creation_Date");
                     String projectsName = rs.getString("projects_name");
                     int totalDevelopers = rs.getInt("total_developers");
