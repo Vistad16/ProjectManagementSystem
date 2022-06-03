@@ -1013,3 +1013,64 @@ FROM developer_project
 INNER JOIN developer ON developer_project.developer_id = developer.id
 INNER JOIN projects ON developer_project.project_id  = projects.id
 WHERE * projects_name [42001-210]
+2022-06-03 13:36:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "company_id" not found [42122-212]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:337)
+	at com.goit.javacore5dev.feature.homeWork.PersonCrudService.printDeveloperInfo(PersonCrudService.java:63)
+	at AppTest.main(AppTest.java:28)
+2022-06-03 13:37:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "company_id" not found [42122-212]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:337)
+	at com.goit.javacore5dev.feature.homeWork.PersonCrudService.printDeveloperInfo(PersonCrudService.java:59)
+	at AppTest.main(AppTest.java:28)
+2022-06-03 13:38:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "company_id" not found [42122-212]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:337)
+	at com.goit.javacore5dev.feature.homeWork.PersonCrudService.printDeveloperInfo(PersonCrudService.java:59)
+	at AppTest.main(AppTest.java:28)
+2022-06-03 13:40:23 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/bohda/OneDrive/JavaApp/java5Dev/ProjectManagementSystem/testdb.mv.db [2.1.212/7]" [50000-212]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:395)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:124)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:3349)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:590)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:466)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:4118)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:324)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:683)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
+	at com.goit.javacore5dev.feature.storage.Storage.<init>(Storage.java:17)
+	at com.goit.javacore5dev.feature.storage.Storage.<clinit>(Storage.java:11)
+	at AppTest.main(AppTest.java:7)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/bohda/OneDrive/JavaApp/java5Dev/ProjectManagementSystem/testdb.mv.db [2.1.212/7]" [50000-212]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 20 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/bohda/OneDrive/JavaApp/java5Dev/ProjectManagementSystem/testdb.mv.db [2.1.212/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:449)
+	... 14 more
