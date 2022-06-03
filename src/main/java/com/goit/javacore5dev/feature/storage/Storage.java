@@ -24,7 +24,7 @@ public class Storage {
         return INSTANCE;
     }
 
-    public int executeUpdate(String sql){
+    public int executeUpdate(String sql) {
         try (Statement st = connection.createStatement()) {
             return st.executeUpdate(sql);
         } catch (Exception e) {
