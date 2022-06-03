@@ -39,5 +39,8 @@ public class AppTest {
         System.out.println("-----------");
         personCrudService.printDeveloperInfo(31);//read
 
+        //The Exterminatus order can be given by any Team lead, Project lead, or Lord Mentor
+//        personCrudService.exterminatus();
+
     }
 }

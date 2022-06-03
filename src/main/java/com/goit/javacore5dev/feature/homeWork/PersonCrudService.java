@@ -6,12 +6,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class PersonCrudService {
     private PreparedStatement insertSt;
     private PreparedStatement selectByIdSt;
     private PreparedStatement updateByIdSt;
     private PreparedStatement deleteByIdSt;
+    private PreparedStatement dropAllObjects;
 
     public PersonCrudService(Storage storage) {
         Connection conn = storage.getConnection();
@@ -37,6 +40,12 @@ public class PersonCrudService {
 
         try {
             deleteByIdSt = conn.prepareStatement("DELETE FROM developer WHERE id = ?");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            dropAllObjects = conn.prepareStatement("DROP ALL OBJECTS");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -127,6 +136,59 @@ public class PersonCrudService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void exterminatus(){
+        Scanner confirmationExterminatus = new Scanner(System.in);
+        System.out.print("CONFIRM ORDER: ");
+        String order = confirmationExterminatus.nextLine().toUpperCase();
+        if (order.equals("EXTERMINATUS")) {
+            try {
+                System.err.print("EXTERMINATUS ");
+                point();
+                System.err.println("\nINITIATED!");
+                sleep(2);
+                int x = 5;
+                while (x != -1) {
+                    System.err.println(x);
+                    sleep(1);
+                    x--;
+                }
+                dropAllObjects.executeUpdate();
+                System.err.print("EXTERMINATUS STATUS ");
+                point();
+                System.err.println("\nTRUE!");
+                sleep(2);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.err.println("EXTERMINATUS STATUS ");
+                point();
+                System.err.println("\nFALSE!");
+                sleep(2);
+            }
+        } else {
+            System.err.print("ORDER NOT CONFIRMED");
+            point();
+            System.err.println("\nORDER CANCELED!");
+            sleep(2);
+        }
+    }
+
+    private void point() {
+        int b = 0;
+        while (b != 3){
+            System.err.print(".");
+            sleep(1);
+            b++;
+        }
+    }
+
+    private void sleep(int second) {
+        try {
+            TimeUnit.SECONDS.sleep(second);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
