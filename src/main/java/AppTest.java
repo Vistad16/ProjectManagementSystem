@@ -1,15 +1,14 @@
-import com.goit.javacore5dev.feature.homeWork.PersonCrudService;
-import com.goit.javacore5dev.feature.storage.Storage;
+import com.goit.javacore5dev.feature.homeWork.HomeWork;
+import com.goit.javacore5dev.feature.homeWork.model.dao.DeveloperDaoService;
+import com.goit.javacore5dev.feature.homeWork.connection.Storage;
 
 public class AppTest {
     public static void main(String[] args) {
         Storage storage = Storage.getInstance();
 
-        //new DatabaseInitService().initDb(storage);//create and fill database
-
-//        HomeWork homeWork = new HomeWork(storage);
+        HomeWork homeWork = new HomeWork(storage);
 //        System.out.println("-----------");
-//        homeWork.totalProjectSalary(HomeWork.SAURON_AND_MAIAR);
+//        homeWork.getTotalProjectSalaryByName(HomeWork.SAURON_AND_MAIAR);
 //        System.out.println("-----------");
 //        homeWork.projectDevelopersList(HomeWork.GREEN_TATOOINE);
 //        System.out.println("-----------");
@@ -20,27 +19,26 @@ public class AppTest {
 //        homeWork.NumberOfDevelopersOnProjects();
 //        System.out.println("-----------");
 
-        //CRUD
-        PersonCrudService personCrudService = new PersonCrudService(storage);
-
-        System.out.println(personCrudService.createNewDev(1, "Shrek", 45, "male", 850));
-        System.out.println("-----------");
-        personCrudService.printDeveloperInfo(31);//read
-        System.out.println("-----------");
-
-        //update
-        System.out.println(personCrudService.updateDeveloperSalary(31, 3000));
-        System.out.println("-----------");
-        personCrudService.printDeveloperInfo(31);//read
-        System.out.println("-----------");
-
-        //delete
-        System.out.println(personCrudService.deleteDeveloper(31));
-        System.out.println("-----------");
-        personCrudService.printDeveloperInfo(31);//read
-
-        //The Exterminatus order can be given by any Team lead, Project lead, or Lord Mentor
-//        personCrudService.exterminatus();
-
+//        //CRUD
+        DeveloperDaoService developerDaoService = new DeveloperDaoService(storage);
+//        //Create
+//        developerDaoService.createNewDev(new Developer(1, "Shrek", 35, Developer.Sex.MALE, 450));
+//
+//        //Read
+//        developerDaoService.listAll();
+//        System.out.println("-----------");
+//        developerDaoService.printDeveloperInfo(8);//read
+//        System.out.println("-----------");
+//
+//        //update
+//        developerDaoService.updateDeveloper(8, new Developer(3, "Bob", 25, Developer.Sex.UNKNOWN, 333));
+//        System.out.println("-----------");
+//        developerDaoService.printDeveloperInfo(8);//read
+//        System.out.println("-----------");
+//
+//        //delete
+//        developerDaoService.deleteDeveloperById(8);
+//        System.out.println("-----------");
+//        developerDaoService.printDeveloperInfo(8);//read
     }
 }

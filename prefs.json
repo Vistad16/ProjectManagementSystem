@@ -1,4 +1,0 @@
-{
-  "dbUrl": "jdbc:h2:./testdb",
-  "initDbSql": "./initDB.sql"
-}
